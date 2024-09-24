@@ -18,7 +18,7 @@ export const metadata: Metadata = {
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
   return (
     <html lang="en">
-      <body className={cn(inter.className, "flex h-screen min-w-80 flex-col")}>
+      <body className={cn(inter.className, "flex h-screen min-w-80 flex-col bg-background text-foreground")}>
         <Header />
         <div className="flex h-full">
           <Sidebar />

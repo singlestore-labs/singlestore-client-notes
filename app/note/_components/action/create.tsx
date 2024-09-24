@@ -19,7 +19,7 @@ export function CreateNoteAction({ className, ...props }: CreateNoteActionProps)
   const handleClick = () => {
     startTransition(async () => {
       const id = await createNote();
-      // push(ROUTES.NOTE_BY_ID(id));
+      push(ROUTES.NOTE_BY_ID(id));
     });
   };
 

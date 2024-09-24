@@ -23,7 +23,7 @@ const env = loadEnvConfig(dir).combinedEnv;
         notes: {
           columns: {
             id: { type: "BIGINT", primaryKey: true, autoIncrement: true },
-            title: { type: "VARCHAR(64)", nullable: false, default: "'Unnamed'" },
+            title: { type: "VARCHAR(64)" },
             content: { type: "TEXT" },
             createdAt: { type: "DATETIME(6)", default: "CURRENT_TIMESTAMP(6)" },
             updatedAt: { type: "DATETIME(6)" },

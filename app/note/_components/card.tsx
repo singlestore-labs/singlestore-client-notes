@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { useParams } from "next/navigation";
+import { usePathname } from "next/navigation";
 
 import { Card, CardProps } from "@/components/ui/card";
 import { ROUTES } from "@/constants/routes";
@@ -12,28 +12,16 @@ import { Note } from "@/types/db";
 export type NoteCardProps = ComponentProps<CardProps, Pick<Note, "id" | "title" | "createdAt">>;
 
 export function NoteCard({ className, id, title, createdAt, ...props }: NoteCardProps) {
-  const params = useParams();
-  const paramsId = params.id ? Number(params.id) : 0;
-  const isActive = paramsId === id;
+  const pathname = usePathname();
+  const isActive = pathname === ROUTES.NOTE_BY_ID(id);
   const _createdAt = new Date(createdAt).toLocaleString("en-US");
 
   return (
     <Card
       {...props}
-      className={cn(
-        "group relative px-4 py-3 transition-all",
-        isActive ? "bg-accent shadow-none" : "hover:shadow-md",
-        className,
-      )}
+      className={cn("group relative border-none px-4 py-3 shadow-none", isActive ? "bg-accent" : "hover:bg-accent", className)}
     >
-      <h4
-        className={cn(
-          "line-clamp-1 text-sm font-medium transition-all",
-          isActive ? "text-primary" : "group-hover:text-primary",
-        )}
-      >
-        {title}
-      </h4>
+      <h4 className="line-clamp-1 text-sm font-medium">{title}</h4>
       <time
         dateTime={_createdAt}
         className="text-xs text-muted-foreground"
