@@ -1,7 +1,8 @@
-import { DB_NAME } from "@/constants/config";
-import { Database } from "@/types/db";
 import { loadEnvConfig } from "@next/env";
 import { SingleStoreClient } from "@singlestore/client";
+
+import { DB_NAME } from "@/constants/config";
+import { Database } from "@/types/db";
 
 const dir = process.cwd();
 const env = loadEnvConfig(dir).combinedEnv;
@@ -22,7 +23,7 @@ const env = loadEnvConfig(dir).combinedEnv;
         notes: {
           columns: {
             id: { type: "BIGINT", primaryKey: true, autoIncrement: true },
-            title: { type: "VARCHAR(64)", nullable: false },
+            title: { type: "VARCHAR(64)", nullable: false, default: "'Unnamed'" },
             content: { type: "TEXT" },
             createdAt: { type: "DATETIME(6)", default: "CURRENT_TIMESTAMP(6)" },
             updatedAt: { type: "DATETIME(6)" },

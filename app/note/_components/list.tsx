@@ -1,27 +1,34 @@
-import Link from "next/link";
-
-import { ROUTES } from "@/constants/routes";
+import { NoteCard } from "@/app/note/_components/card";
+import { cachedGetNotes } from "@/app/note/_lib/get";
+import { Fade } from "@/components/fade";
 import { cn } from "@/lib/utils";
 import { ComponentProps } from "@/types/component";
-import { Note } from "@/types/db";
 
-export type NoteListItem = Pick<Note, "id" | "title" | "createdAt">;
+export type NotesListProps = ComponentProps<"div">;
 
-export type NoteListProps = ComponentProps<"ul", { notes?: NoteListItem[] }>;
+export async function NotesList({ className, ...props }: NotesListProps) {
+  const notes = await cachedGetNotes();
 
-export function NoteList({ className, notes = [], ...props }: NoteListProps) {
   return (
-    <ul
+    <div
       {...props}
-      className={cn("", className)}
+      className={cn("relative", className)}
     >
-      {notes.map((note) => (
-        <li key={note.id}>
-          <Link href={ROUTES.NOTE_BY_ID(note.id)}>
-            <h4>{note.title}</h4>
-          </Link>
-        </li>
-      ))}
-    </ul>
+      <Fade
+        className="top-0 w-full"
+        direction="b"
+      />
+      <Fade
+        className="bottom-0 w-full"
+        direction="t"
+      />
+      <ul className="absolute left-0 top-0 flex h-full w-full flex-col gap-2 overflow-auto px-4 py-2">
+        {notes.map((note) => (
+          <li key={note.id}>
+            <NoteCard {...note} />
+          </li>
+        ))}
+      </ul>
+    </div>
   );
 }

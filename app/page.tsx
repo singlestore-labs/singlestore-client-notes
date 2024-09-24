@@ -1,3 +1,13 @@
+import { Suspense } from "react";
+
+import { NoteWelcome } from "@/app/note/_components/welcome";
+
 export default function Home() {
-  return <main className="flex min-h-screen flex-col items-center justify-between p-24"></main>;
+  return (
+    <div className="flex h-full items-center justify-center bg-zinc-50 p-4">
+      <Suspense>
+        <NoteWelcome />
+      </Suspense>
+    </div>
+  );
 }

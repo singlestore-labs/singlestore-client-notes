@@ -2,12 +2,12 @@ import { Note } from "@/types/db";
 
 const ROOT = "/";
 
-const NOTES = `${ROOT}notes`;
+const NOTE = `${ROOT}note`;
 
-const NOTE_BY_ID = (id: Note["id"]) => `${NOTES}/${id}`;
+const NOTE_BY_ID = (id: Note["id"]) => `${NOTE}/${id}`;
 
 export const ROUTES = {
   ROOT,
-  NOTES,
+  NOTES: NOTE,
   NOTE_BY_ID,
 };
