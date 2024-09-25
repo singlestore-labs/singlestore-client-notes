@@ -1,7 +1,8 @@
+import "github-markdown-css/github-markdown-light.css";
+import Markdown, { Options } from "react-markdown";
+
 import { cn } from "@/lib/utils";
 import { ComponentProps } from "@/types/component";
-import Markdown, { Options } from "react-markdown";
-import "github-markdown-css/github-markdown-light.css";
 
 export type ContentProps = ComponentProps<"div", { children?: Options["children"] }>;
 

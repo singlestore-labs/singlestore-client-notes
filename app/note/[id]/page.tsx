@@ -1,9 +1,9 @@
 import { notFound } from "next/navigation";
 
+import { NoteToolbar } from "@/app/note/_components/toolbar";
 import { NoteContentControl } from "@/app/note/_content/components/control";
 import { getNoteById } from "@/app/note/_lib/get-by-id";
 import { NoteTitleControl } from "@/app/note/_title/components/control";
-import { NoteToolbar } from "@/app/note/_components/toolbar";
 
 type NotePageProps = {
   params: { id: string };

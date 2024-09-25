@@ -43,13 +43,13 @@ export function NoteTitleControl({ className, id, title, ...props }: NoteTitleCo
     >
       {isEditMode ? (
         <NoteTitleForm
-          className="relative -ml-10"
+          className="relative -ml-12"
           defaultValues={{ title: _title }}
           isDisabled={isPending}
           onSubmit={handleSubmit}
         />
       ) : (
-        <div className="group relative -ml-10 flex items-start gap-2">
+        <div className="group relative -ml-12 flex items-start gap-2">
           <ButtonEdit
             className="invisible group-hover:visible"
             onClick={handleEditButtonClick}

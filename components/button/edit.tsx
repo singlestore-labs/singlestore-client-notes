@@ -1,9 +1,9 @@
 import { Edit2 } from "lucide-react";
 
 import { Button, ButtonProps } from "@/components/ui/button";
+import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/components/ui/tooltip";
 import { cn } from "@/lib/utils";
 import { ComponentProps } from "@/types/component";
-import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/components/ui/tooltip";
 
 export type ButtonEditProps = ComponentProps<ButtonProps>;
 

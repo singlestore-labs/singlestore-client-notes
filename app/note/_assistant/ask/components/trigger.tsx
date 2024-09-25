@@ -1,6 +1,6 @@
-import { ComponentProps } from "@/types/component";
-import { cn } from "@/lib/utils";
 import { Button, ButtonProps } from "@/components/ui/button";
+import { cn } from "@/lib/utils";
+import { ComponentProps } from "@/types/component";
 
 export type NoteAssistantAskTriggerProps = ComponentProps<ButtonProps>;
 

@@ -4,10 +4,10 @@ import { Trash } from "lucide-react";
 import { forwardRef, ReactNode, useState } from "react";
 
 import { Button, ButtonProps } from "@/components/ui/button";
+import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog";
+import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/components/ui/tooltip";
 import { cn } from "@/lib/utils";
 import { ComponentProps } from "@/types/component";
-import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/components/ui/tooltip";
-import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog";
 
 export type ButtonDeleteProps = ComponentProps<ButtonProps, { title?: ReactNode }>;
 

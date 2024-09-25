@@ -44,13 +44,13 @@ export function NoteContentControl({ className, id, content, ...props }: NoteCon
     >
       {isEditMode ? (
         <NoteContentForm
-          className="relative -ml-10"
+          className="relative -ml-12"
           defaultValues={{ content: _content }}
           isDisabled={isPending}
           onSubmit={handleSubmit}
         />
       ) : (
-        <div className="group relative -ml-10 flex items-start gap-2">
+        <div className="group relative -ml-12 flex items-start gap-2">
           <ButtonEdit
             className="invisible group-hover:visible group-hover:opacity-100"
             onClick={handleEditButtonClick}
