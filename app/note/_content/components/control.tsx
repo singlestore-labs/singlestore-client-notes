@@ -9,6 +9,7 @@ import { ButtonEdit } from "@/components/button/edit";
 import { cn } from "@/lib/utils";
 import { ComponentProps } from "@/types/component";
 import { Note } from "@/types/db";
+import { Content } from "@/components/content";
 
 export type NoteContentControlProps = ComponentProps<"div", Pick<Note, "id" | "content">>;
 
@@ -49,12 +50,12 @@ export function NoteContentControl({ className, id, content, ...props }: NoteCon
           onSubmit={handleSubmit}
         />
       ) : (
-        <div className="group relative -ml-10 flex items-baseline gap-2">
+        <div className="group relative -ml-10 flex items-start gap-2">
           <ButtonEdit
             className="invisible group-hover:visible group-hover:opacity-100"
             onClick={handleEditButtonClick}
           />
-          {!_content ? <p className="text-base text-muted-foreground">Content</p> : <p className="text-base">{_content}</p>}
+          {!_content ? <p className="text-base text-muted-foreground">Content</p> : <Content>{_content}</Content>}
         </div>
       )}
     </div>

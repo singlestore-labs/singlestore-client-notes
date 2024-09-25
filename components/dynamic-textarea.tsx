@@ -8,22 +8,19 @@ import { cn } from "@/lib/utils";
 import { ComponentProps } from "@/types/component";
 import { Defined } from "@/types/helpers";
 
-export type DynamicTextareaProps = ComponentProps<TextareaProps, { value?: string }>;
+export type DynamicTextareaProps = ComponentProps<TextareaProps, { value?: string; onSubmitKeyDown?: () => void }>;
 
 export const DynamicTextarea = forwardRef<{ current: HTMLTextAreaElement | null }, DynamicTextareaProps>(
-  ({ className, value, onKeyDown, ...props }, ref) => {
+  ({ className, value, onSubmitKeyDown, ...props }, ref) => {
     const rootRef = useRef<HTMLTextAreaElement | null>(null);
-
-    const [_value, setValue] = useState<typeof value>();
-    useEffect(() => setValue(value), [value]);
 
     useImperativeHandle(ref, () => ({ current: rootRef.current }));
     useAutosizeTextArea(rootRef.current, value);
 
     const handleKeyDown: Defined<TextareaProps["onKeyDown"]> = (event) => {
-      if (event.key === "Enter" && !event.shiftKey) {
+      if (event.key === "Enter" && event.metaKey) {
         event.preventDefault();
-        onKeyDown?.(event);
+        onSubmitKeyDown?.();
       }
     };
 
@@ -39,7 +36,7 @@ export const DynamicTextarea = forwardRef<{ current: HTMLTextAreaElement | null 
         {...props}
         ref={rootRef}
         className={cn("min-h-max resize-none", className)}
-        value={_value}
+        value={value}
         rows={1}
         autoFocus
         onKeyDown={handleKeyDown}

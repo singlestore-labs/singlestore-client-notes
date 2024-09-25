@@ -20,9 +20,9 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
     <html lang="en">
       <body className={cn(inter.className, "flex h-screen min-w-80 flex-col bg-background text-foreground")}>
         <Header />
-        <div className="flex h-full">
+        <div className="flex flex-1 items-start overflow-y-auto overflow-x-hidden">
           <Sidebar />
-          <main className="flex-1">{children}</main>
+          <main className="h-full flex-1">{children}</main>
         </div>
       </body>
     </html>

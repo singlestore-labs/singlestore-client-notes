@@ -31,7 +31,7 @@ export function NoteTitleForm({ className, defaultValues, max = 128, isDisabled,
     defaultValues: { title: "", ...defaultValues },
   });
 
-  const handleKeyDown: Defined<DynamicTextareaProps["onKeyDown"]> = () => {
+  const handleSubmitKeyDown: Defined<DynamicTextareaProps["onSubmitKeyDown"]> = () => {
     buttonRef.current?.click();
   };
 
@@ -59,7 +59,7 @@ export function NoteTitleForm({ className, defaultValues, max = 128, isDisabled,
                   ref={(ref) => field.ref(ref?.current)}
                   className="min-h-0 rounded-none border-0 border-b p-0 pb-2 text-3xl font-bold shadow-none focus-visible:ring-0"
                   placeholder="Title"
-                  onKeyDown={handleKeyDown}
+                  onSubmitKeyDown={handleSubmitKeyDown}
                 />
               </FormControl>
             </FormItem>

@@ -40,7 +40,7 @@ export function NoteContentForm({
 
   const content = form.watch("content");
 
-  const handleKeyDown: Defined<DynamicTextareaProps["onKeyDown"]> = () => {
+  const handleSubmitKeyDown: Defined<DynamicTextareaProps["onSubmitKeyDown"]> = () => {
     buttonRef.current?.click();
   };
 
@@ -69,7 +69,7 @@ export function NoteContentForm({
                     ref={(ref) => field.ref(ref?.current)}
                     className="min-h-0 rounded-none border-0 border-b p-0 pb-2 text-base shadow-none focus-visible:ring-0"
                     placeholder="Content"
-                    onKeyDown={handleKeyDown}
+                    onSubmitKeyDown={handleSubmitKeyDown}
                   />
                 </FormControl>
               </FormItem>

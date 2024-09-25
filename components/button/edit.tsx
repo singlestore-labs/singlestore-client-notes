@@ -15,7 +15,7 @@ export function ButtonEdit({ className, ...props }: ButtonEditProps) {
           <Button
             {...props}
             type="button"
-            className={cn("size-8 shrink-0 p-0", className)}
+            className={cn("shrink-0 p-0", className)}
             variant="secondary"
             size="icon"
           >

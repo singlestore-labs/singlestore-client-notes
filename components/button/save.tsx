@@ -16,7 +16,7 @@ export const ButtonSave = forwardRef<HTMLButtonElement | null, ButtonSaveProps>(
           <Button
             {...props}
             ref={ref}
-            className={cn("size-8 shrink-0 p-0", className)}
+            className={cn("shrink-0 p-0", className)}
             size="icon"
           >
             <Save className="size-4" />

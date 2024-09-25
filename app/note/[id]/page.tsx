@@ -3,6 +3,7 @@ import { notFound } from "next/navigation";
 import { NoteContentControl } from "@/app/note/_content/components/control";
 import { getNoteById } from "@/app/note/_lib/get-by-id";
 import { NoteTitleControl } from "@/app/note/_title/components/control";
+import { NoteToolbar } from "@/app/note/_components/toolbar";
 
 type NotePageProps = {
   params: { id: string };
@@ -19,25 +20,30 @@ export default async function NotePage({ params }: NotePageProps) {
   const _createdAt = new Date(note.createdAt).toLocaleString("en-US");
 
   return (
-    <div className="h-full px-12 py-8">
-      <div className="mx-auto w-full max-w-4xl">
+    <div className="relative h-full overflow-y-auto overflow-x-hidden px-12 py-8">
+      <div className="mx-auto w-full max-w-4xl pb-12">
         <time
-          dateTime={_createdAt}
           className="text-sm text-muted-foreground"
+          dateTime={_createdAt}
         >
           {_createdAt}
         </time>
         <NoteTitleControl
+          className="mt-4"
           id={note.id}
           title={note.title}
-          className="mt-4"
         />
         <NoteContentControl
+          className="mt-6"
           id={note.id}
           content={note.content}
-          className="mt-4"
         />
       </div>
+
+      <NoteToolbar
+        className="fixed bottom-4 right-8 z-[1]"
+        id={note.id}
+      />
     </div>
   );
 }
