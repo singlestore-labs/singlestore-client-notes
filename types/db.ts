@@ -1,6 +1,3 @@
-import { DatabaseType } from "@singlestore/client/database";
-import { TableType } from "@singlestore/client/table";
-
 export interface Note {
   id: number;
   title: string;
@@ -11,7 +8,7 @@ export interface Note {
 }
 
 export interface Database {
-  name: "singlestore_client_todo";
+  name: "singlestore_client_notes";
   tables: {
     notes: Note;
   };
