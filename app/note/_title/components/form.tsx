@@ -1,7 +1,7 @@
 "use client";
 
 import { zodResolver } from "@hookform/resolvers/zod";
-import { useRef } from "react";
+import { useMemo, useRef } from "react";
 import { SubmitHandler, useForm } from "react-hook-form";
 import { z } from "zod";
 
@@ -12,20 +12,22 @@ import { cn } from "@/lib/utils";
 import { ComponentProps } from "@/types/component";
 import { Defined } from "@/types/helpers";
 
-export const noteTitleFormSchema = z.object({ title: z.string() });
+export const getNoteTitleFormSchema = (max: number = 2000) => z.object({ title: z.string().max(max) });
 
-export type NoteTitleFormSchema = z.infer<typeof noteTitleFormSchema>;
+export type NoteTitleFormSchema = z.infer<ReturnType<typeof getNoteTitleFormSchema>>;
 
 export type NoteTitleFormProps = ComponentProps<
   "form",
-  { defaultValues?: NoteTitleFormSchema; isDisabled?: boolean; onSubmit: SubmitHandler<NoteTitleFormSchema> }
+  { defaultValues?: NoteTitleFormSchema; max?: number; isDisabled?: boolean; onSubmit: SubmitHandler<NoteTitleFormSchema> }
 >;
 
-export function NoteTitleForm({ className, defaultValues, isDisabled, onSubmit, ...props }: NoteTitleFormProps) {
+export function NoteTitleForm({ className, defaultValues, max = 128, isDisabled, onSubmit, ...props }: NoteTitleFormProps) {
   const buttonRef = useRef<HTMLButtonElement | null>(null);
 
+  const schema = useMemo(() => getNoteTitleFormSchema(max), [max]);
+
   const form = useForm<NoteTitleFormSchema>({
-    resolver: zodResolver(noteTitleFormSchema),
+    resolver: zodResolver(schema),
     defaultValues: { title: "", ...defaultValues },
   });
 

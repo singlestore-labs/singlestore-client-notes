@@ -1,6 +1,6 @@
 "use client";
 
-import { forwardRef, useEffect, useImperativeHandle, useRef } from "react";
+import { forwardRef, useEffect, useImperativeHandle, useRef, useState } from "react";
 
 import { Textarea, TextareaProps } from "@/components/ui/textarea";
 import { useAutosizeTextArea } from "@/hooks/use-auto-size-textarea";
@@ -13,6 +13,9 @@ export type DynamicTextareaProps = ComponentProps<TextareaProps, { value?: strin
 export const DynamicTextarea = forwardRef<{ current: HTMLTextAreaElement | null }, DynamicTextareaProps>(
   ({ className, value, onKeyDown, ...props }, ref) => {
     const rootRef = useRef<HTMLTextAreaElement | null>(null);
+
+    const [_value, setValue] = useState<typeof value>();
+    useEffect(() => setValue(value), [value]);
 
     useImperativeHandle(ref, () => ({ current: rootRef.current }));
     useAutosizeTextArea(rootRef.current, value);
@@ -35,8 +38,8 @@ export const DynamicTextarea = forwardRef<{ current: HTMLTextAreaElement | null 
       <Textarea
         {...props}
         ref={rootRef}
-        className={cn("h-auto min-h-0 resize-none", className)}
-        value={value}
+        className={cn("min-h-max resize-none", className)}
+        value={_value}
         rows={1}
         autoFocus
         onKeyDown={handleKeyDown}

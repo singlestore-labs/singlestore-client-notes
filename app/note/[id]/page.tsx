@@ -1,5 +1,6 @@
 import { notFound } from "next/navigation";
 
+import { NoteContentControl } from "@/app/note/_content/components/control";
 import { getNoteById } from "@/app/note/_lib/get-by-id";
 import { NoteTitleControl } from "@/app/note/_title/components/control";
 
@@ -29,6 +30,11 @@ export default async function NotePage({ params }: NotePageProps) {
         <NoteTitleControl
           id={note.id}
           title={note.title}
+          className="mt-4"
+        />
+        <NoteContentControl
+          id={note.id}
+          content={note.content}
           className="mt-4"
         />
       </div>

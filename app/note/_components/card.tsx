@@ -21,7 +21,7 @@ export function NoteCard({ className, id, title, createdAt, ...props }: NoteCard
       {...props}
       className={cn("group relative border-none px-4 py-3 shadow-none", isActive ? "bg-accent" : "hover:bg-accent", className)}
     >
-      <h4 className="line-clamp-1 text-sm font-medium">{title}</h4>
+      <h4 className="line-clamp-1 text-sm font-medium">{title || "Untitled"}</h4>
       <time
         dateTime={_createdAt}
         className="text-xs text-muted-foreground"

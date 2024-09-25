@@ -13,19 +13,21 @@ import { Note } from "@/types/db";
 export type NoteTitleControlProps = ComponentProps<"div", Pick<Note, "id" | "title">>;
 
 export function NoteTitleControl({ className, id, title, ...props }: NoteTitleControlProps) {
-  const [_title, setTitle] = useState(title);
+  const [_title, setTitle] = useState(title || "");
   const [isEditMode, setIsEditMode] = useState(!_title);
   const [isPending, startTransition] = useTransition();
 
   const handleSubmit: SubmitHandler<NoteTitleFormSchema> = async (values) => {
-    if (_title === values.title) {
+    const title = values.title.trim();
+
+    if (_title === title) {
       setIsEditMode(false);
       return;
     }
 
     startTransition(async () => {
-      await updateNoteTitle(id, values.title);
-      setTitle(values.title);
+      await updateNoteTitle(id, title);
+      setTitle(title);
       setIsEditMode(false);
     });
   };
@@ -49,10 +51,14 @@ export function NoteTitleControl({ className, id, title, ...props }: NoteTitleCo
       ) : (
         <div className="group relative -ml-10 flex items-start gap-2">
           <ButtonEdit
-            className="invisible group-hover:visible group-hover:opacity-100"
+            className="invisible group-hover:visible"
             onClick={handleEditButtonClick}
           />
-          <h1 className="text-3xl font-bold">{_title}</h1>
+          {!_title ? (
+            <p className="text-3xl font-bold text-muted-foreground">Title</p>
+          ) : (
+            <h1 className="text-3xl font-bold">{_title}</h1>
+          )}
         </div>
       )}
     </div>
