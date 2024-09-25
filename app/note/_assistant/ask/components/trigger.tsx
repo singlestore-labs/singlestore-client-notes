@@ -2,9 +2,9 @@ import { ComponentProps } from "@/types/component";
 import { cn } from "@/lib/utils";
 import { Button, ButtonProps } from "@/components/ui/button";
 
-export type NoteAssistantAskActionProps = ComponentProps<ButtonProps>;
+export type NoteAssistantAskTriggerProps = ComponentProps<ButtonProps>;
 
-export function NoteAssistantAskAction({ className, ...props }: NoteAssistantAskActionProps) {
+export function NoteAssistantAskTrigger({ className, ...props }: NoteAssistantAskTriggerProps) {
   return (
     <Button
       variant="outline"

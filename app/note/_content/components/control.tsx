@@ -6,10 +6,10 @@ import { SubmitHandler } from "react-hook-form";
 import { updateNoteContent } from "@/app/note/_content/actions/update";
 import { NoteContentForm, NoteContentFormSchema } from "@/app/note/_content/components/form";
 import { ButtonEdit } from "@/components/button/edit";
+import { Content } from "@/components/content";
 import { cn } from "@/lib/utils";
 import { ComponentProps } from "@/types/component";
 import { Note } from "@/types/db";
-import { Content } from "@/components/content";
 
 export type NoteContentControlProps = ComponentProps<"div", Pick<Note, "id" | "content">>;
 
