@@ -3,10 +3,11 @@ import { NoteAssistantAskTrigger, NoteAssistantAskTriggerProps } from "@/app/not
 import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog";
 import { cn } from "@/lib/utils";
 import { ComponentProps } from "@/types/component";
+import { Note } from "@/types/db";
 
-export type NoteAssistantAskDialogProps = ComponentProps<NoteAssistantAskTriggerProps>;
+export type NoteAssistantAskDialogProps = ComponentProps<NoteAssistantAskTriggerProps, Pick<Note, "id">>;
 
-export function NoteAssistantAskDialog({ className, ...props }: NoteAssistantAskDialogProps) {
+export function NoteAssistantAskDialog({ className, id, ...props }: NoteAssistantAskDialogProps) {
   return (
     <Dialog>
       <DialogTrigger asChild>
@@ -20,7 +21,7 @@ export function NoteAssistantAskDialog({ className, ...props }: NoteAssistantAsk
           <DialogTitle>Ask Assistant</DialogTitle>
           <DialogDescription>Ask the assistant a question about the selected note.</DialogDescription>
         </DialogHeader>
-        <NoteAssistantAskControl />
+        <NoteAssistantAskControl id={id} />
       </DialogContent>
     </Dialog>
   );

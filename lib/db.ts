@@ -4,7 +4,7 @@ import { SingleStoreClient } from "@singlestore/client";
 import { DB_NAME } from "@/constants/config";
 import { Database } from "@/types/db";
 
-const ai = new AI({ openAIApiKey: process.env.OPENAI_API_KEY });
+export const ai = new AI({ openAIApiKey: process.env.OPENAI_API_KEY });
 
 export const client = new SingleStoreClient({ ai });
 

@@ -30,7 +30,7 @@ export function NoteToolbar({ className, id, ...props }: NoteToolbarProps) {
       {...props}
       className={cn("flex gap-2 p-2", className)}
     >
-      <NoteAssistantAskDialog />
+      <NoteAssistantAskDialog id={id} />
       <ButtonDelete
         className="ml-auto"
         title="Delete the note?"

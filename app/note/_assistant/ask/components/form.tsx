@@ -56,6 +56,7 @@ export function NoteAssistantAskForm({ className, isDisabled, onSubmit, ...props
                     className="pr-10 text-base"
                     rows={3}
                     {...field}
+                    autoFocus
                     onKeyDown={handleKeyDown}
                   />
                 </FormControl>
