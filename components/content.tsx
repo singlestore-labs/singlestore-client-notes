@@ -10,7 +10,7 @@ export function Content({ children, className, ...props }: ContentProps) {
   return (
     <div
       {...props}
-      className={cn("w-full max-w-full [&_pre]:overflow-auto", className)}
+      className={cn("w-full max-w-full [&_ol]:list-decimal [&_pre]:overflow-auto [&_ul]:list-disc", className)}
     >
       <Markdown
         className="markdown-body"
