@@ -1,6 +1,6 @@
 "use client";
 
-import { useRef, useState, useTransition } from "react";
+import { useState, useTransition } from "react";
 import { SubmitHandler } from "react-hook-form";
 
 import { updateNoteTitle } from "@/app/note/_title/actions/update";
@@ -13,25 +13,24 @@ import { Note } from "@/types/db";
 export type NoteTitleControlProps = ComponentProps<"div", Pick<Note, "id" | "title">>;
 
 export function NoteTitleControl({ className, id, title, ...props }: NoteTitleControlProps) {
-  const prevTitleRef = useRef(title);
-  const [isEditMode, setIsEditMode] = useState(!title);
+  const [_title, setTitle] = useState(title);
+  const [isEditMode, setIsEditMode] = useState(!_title);
   const [isPending, startTransition] = useTransition();
 
   const handleSubmit: SubmitHandler<NoteTitleFormSchema> = async (values) => {
-    if (prevTitleRef.current === values.title) {
+    if (_title === values.title) {
       setIsEditMode(false);
       return;
     }
 
     startTransition(async () => {
       await updateNoteTitle(id, values.title);
-      prevTitleRef.current = values.title;
+      setTitle(values.title);
       setIsEditMode(false);
     });
   };
 
   const handleEditButtonClick = () => {
-    prevTitleRef.current = title;
     setIsEditMode((is) => !is);
   };
 
@@ -43,7 +42,7 @@ export function NoteTitleControl({ className, id, title, ...props }: NoteTitleCo
       {isEditMode ? (
         <NoteTitleForm
           className="relative -ml-10"
-          defaultValues={{ title }}
+          defaultValues={{ title: _title }}
           isDisabled={isPending}
           onSubmit={handleSubmit}
         />
@@ -53,7 +52,7 @@ export function NoteTitleControl({ className, id, title, ...props }: NoteTitleCo
             className="invisible group-hover:visible group-hover:opacity-100"
             onClick={handleEditButtonClick}
           />
-          <h1 className="text-3xl font-bold">{title}</h1>
+          <h1 className="text-3xl font-bold">{_title}</h1>
         </div>
       )}
     </div>
