@@ -12,7 +12,7 @@ import { ComponentProps } from "@/types/component";
 export type ButtonDeleteProps = ComponentProps<ButtonProps, { title?: ReactNode }>;
 
 export const ButtonDelete = forwardRef<HTMLButtonElement | null, ButtonDeleteProps>(
-  ({ className, title = "Are you sure?", onClick, ...props }, ref) => {
+  ({ className, title = "Are you sure?", disabled, onClick, ...props }, ref) => {
     const [isOpen, setIsOpen] = useState(false);
 
     return (
@@ -49,6 +49,7 @@ export const ButtonDelete = forwardRef<HTMLButtonElement | null, ButtonDeletePro
             <Button
               className="flex-1"
               variant="secondary"
+              disabled={disabled}
               onClick={() => setIsOpen(false)}
             >
               Cancel
@@ -56,6 +57,7 @@ export const ButtonDelete = forwardRef<HTMLButtonElement | null, ButtonDeletePro
             <Button
               className="flex-1"
               variant="destructive"
+              disabled={disabled}
               onClick={onClick}
             >
               Delete
