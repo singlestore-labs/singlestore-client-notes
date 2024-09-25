@@ -55,6 +55,7 @@ export function NoteContentForm({
           <ButtonSave
             ref={buttonRef}
             type="submit"
+            disabled={isDisabled}
           />
 
           <FormField

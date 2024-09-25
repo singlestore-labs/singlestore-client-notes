@@ -45,6 +45,7 @@ export function NoteTitleForm({ className, defaultValues, max = 128, isDisabled,
         <ButtonSave
           ref={buttonRef}
           type="submit"
+          disabled={isDisabled}
         />
 
         <FormField
