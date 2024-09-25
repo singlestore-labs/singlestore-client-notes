@@ -4,6 +4,7 @@ import type { Metadata } from "next";
 
 import { Header } from "@/components/header";
 import { Sidebar } from "@/components/sidebar";
+import { APP_DESCRIPTION, APP_NAME } from "@/constants/config";
 import { cn } from "@/lib/utils";
 
 import "./globals.css";
@@ -11,8 +12,8 @@ import "./globals.css";
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  title: "SingleStore Client Notes",
-  description: "A simple app demonstrating the basic usage of the SingleStore Client.",
+  title: APP_NAME,
+  description: APP_DESCRIPTION,
 };
 
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
