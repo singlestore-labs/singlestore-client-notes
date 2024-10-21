@@ -1,5 +1,3 @@
-export const DB_NAME = "singlestore_client_notes";
-
 export const APP_NAME = "SingleStore Client Notes";
 
 export const APP_DESCRIPTION = `\

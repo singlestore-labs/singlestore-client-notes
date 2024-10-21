@@ -8,7 +8,7 @@ export interface Note {
 }
 
 export interface Database {
-  name: "singlestore_client_notes";
+  name: string;
   tables: {
     notes: Note;
   };
