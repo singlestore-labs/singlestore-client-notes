@@ -1,9 +1,6 @@
 import { loadEnvConfig } from "@next/env";
 import { SingleStoreClient } from "@singlestore/client";
 
-import { DB_NAME } from "@/constants/config";
-import { Database } from "@/types/db";
-
 const dir = process.cwd();
 const env = loadEnvConfig(dir).combinedEnv;
 
@@ -17,19 +14,17 @@ const env = loadEnvConfig(dir).combinedEnv;
       password: env.DB_PASSWORD,
     });
 
-    await connection.database.create<Database>({
-      name: DB_NAME,
-      tables: {
-        notes: {
-          columns: {
-            id: { type: "BIGINT", primaryKey: true, autoIncrement: true },
-            title: { type: "VARCHAR(64)" },
-            content: { type: "TEXT" },
-            createdAt: { type: "DATETIME(6)", default: "CURRENT_TIMESTAMP(6)" },
-            updatedAt: { type: "DATETIME(6)" },
-            content_v: { type: "VECTOR(1536)" },
-          },
-        },
+    const database = await connection.database.create({ name: env.DB_NAME || "singlestore_client_notes" });
+
+    await database.table.create({
+      name: "notes",
+      columns: {
+        id: { type: "BIGINT", primaryKey: true, autoIncrement: true },
+        title: { type: "VARCHAR(64)" },
+        content: { type: "TEXT" },
+        createdAt: { type: "DATETIME(6)", default: "CURRENT_TIMESTAMP(6)" },
+        updatedAt: { type: "DATETIME(6)" },
+        content_v: { type: "VECTOR(1536)" },
       },
     });
 
